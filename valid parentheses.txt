@@ -1,0 +1,22 @@
+public class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> stack=new Stack<>();//为什么必须是<Character>而不是<char>???
+        for(char c:s.toCharArray()){
+            //如果是{ [(则入栈,否则出栈进行比较
+            if("{[(".indexOf(c)>=0)
+                stack.push(c);
+            else if(!stack.isEmpty()){
+                char top=stack.pop();
+                if(!validTrue(top,c)) return false;
+            }
+            else return false;
+        }
+        if(stack.isEmpty()) return true;
+        return false;
+    }
+    private boolean validTrue(char ch1,char ch2){
+        if( (ch1=='(' && ch2==')')|| (ch1=='[' && ch2==']')||(ch1=='{' && ch2=='}'))
+            return true;
+        return false;
+    }
+}
