@@ -1,0 +1,19 @@
+public class Solution {
+    public List<String> generateParenthesis(int n) {
+        if(n==0) return null;
+        List<String> rst=new ArrayList<>();
+        if(n==1) {
+           rst.add("()"); 
+           return rst;
+        } 
+        
+        for(String temp:generateParenthesis(n-1)){
+            
+            rst.add("()"+temp);
+            rst.add(temp+"()");
+            rst.add("("+temp+")");
+        }
+        rst.remove(0);
+        return rst;
+    }
+}
