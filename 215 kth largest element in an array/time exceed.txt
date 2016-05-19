@@ -1,0 +1,25 @@
+public class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        List<Integer> arr1=new ArrayList<Integer>();
+        List<Integer> arr2=new ArrayList<Integer>();
+        int random=nums[(int)Math.random()*(nums.length)];//nums.length-1-0+1
+        for(int n:nums){
+            if(n<random){
+                arr1.add(n);
+            }
+             if(n>random) arr2.add(n);
+        }
+        
+        if(k<arr2.size()) return findKthLargest(toArray(arr2),k);
+        if(k>(nums.length-arr1.size())) return findKthLargest(toArray(arr1),k-(nums.length-arr1.size()));
+        return random;
+    }
+    private int[] toArray(List<Integer> list) {
+        int[] ret = new int[ list.size() ];
+        int i = 0;
+        for( Iterator<Integer> it = list.iterator(); 
+             it.hasNext(); 
+            ret[i++] = it.next() );
+        return ret;
+    }
+}
