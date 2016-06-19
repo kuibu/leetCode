@@ -1,0 +1,19 @@
+public class Solution {
+    public int strStr(String haystack, String needle) {
+        if(needle.equals("")) return 0;
+        int cur=0;
+        int i=0;
+        while(i<haystack.length()){
+            if(haystack.charAt(i)==needle.charAt(cur)){
+                cur++;
+                i++;
+                if(cur==needle.length()) return i-needle.length();
+            }
+            else{
+                i=i-cur+1;
+                cur=0;
+            }
+        }
+        return -1;
+    }
+}
